@@ -8,11 +8,11 @@ import (
 const Name = "label"
 
 const (
-	// ImageTagMissing occurs when the deployment label is missing
+	// LabelMissing occurs when the deployment label is missing
 	LabelMissing = "LabelMissing"
 )
 
-// Image implements Auditable
+// Label implements Auditable
 type Label struct {
 	value string
 }
@@ -23,7 +23,7 @@ func New(config Config) *Label {
 	}
 }
 
-// Audit checks that the container image matches the provided image
+// Audit checks that the deployment label matches the provided label
 func (label *Label) Audit(resource k8s.Resource, _ []k8s.Resource) ([]*kubeaudit.AuditResult, error) {
 	var auditResults []*kubeaudit.AuditResult
 
