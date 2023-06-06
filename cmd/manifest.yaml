@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: TestDeploymentCorrect
+  labels:
+    project: test-project
+spec:
+  selector:
+    matchLabels:
+      app: TestDeploymentCorrect
+  template:
+    metadata:
+      labels:
+        app: TestDeploymentCorrect
+    spec:
+      containers:
+      - name: TestDeploymentCorrect
+        image: alpine
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: TestDeploymentWrongname
+  labels:
+    projectwrong: test-project
+spec:
+  selector:
+    matchLabels:
+      app: TestDeploymentWrongname
+  template:
+    metadata:
+      labels:
+        app: TestDeploymentWrongname
+    spec:
+      containers:
+      - name: TestDeploymentWrongname
+        image: alpine
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: TestDeploymentNoname
+spec:
+  selector:
+    matchLabels:
+      app: TestDeploymentNoname
+  template:
+    metadata:
+      labels:
+        app: TestDeploymentNoname
+    spec:
+      containers:
+      - name: TestDeploymentNoname
+        image: alpine
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
